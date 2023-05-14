@@ -1,0 +1,61 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+  
+</head>
+<body>
+  
+@using bol;
+
+<div>
+  
+  <h1 style="color: white;">
+   Welcome to #️⃣JingleCloud
+  </h1>
+        <table  background="images/dribbble.gif"  border="2" style="color: white;" class="table">
+            <tr  ><th>Songs</th>
+             <th scope="row">Play songs</th>
+            <tr>
+ @{
+    List<Mp3saver> alist=ViewData["mp3"] as List<Mp3saver>;
+         
+     foreach(Mp3saver b in alist)
+     { 
+            <tr ><th>@b.filename</th>
+              <th>                  <audio controls class="audio-player" id="@b.id" >  
+  <source src="@b.link" type="audio/mpeg">  
+  
+</audio> </th>
+            </tr>
+        
+  }
+    
+ }
+        </table>
+        &nbsp;
+        &nbsp;
+        
+ <script>
+     var audioPlayers = document.querySelectorAll('.audio-player');
+    var currentAudio = null;
+
+    audioPlayers.forEach(function (audio) {
+        audio.addEventListener('play', function () {
+            if (currentAudio && currentAudio !== this) {
+                currentAudio.pause();
+            }
+            currentAudio = this;
+        });
+    });
+    </script>
+</body>
+</html>
+  
